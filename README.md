@@ -10,8 +10,26 @@ To write a C Program to find area of rectangle using pointer.
 5.	Stop the program.
 
 ## PROGRAM
+```
+#include <stdio.h>
+int main() {
+    int length, breadth, area;
+    int *x, *y;
+    printf("Enter length and breadth of rectangle: ");
+    scanf("%d %d", &length, &breadth);
+    x = &length;
+    y = &breadth;
+    area = (*x) * (*y);
+    printf("Area of rectangle: %d\n", area);
+    return 0;
+}
+```
 
 ## OUTPUT
+```
+Enter length and breadth of rectangle: 5 10
+Area of rectangle: 50
+```
 		       	
 
 
@@ -34,8 +52,28 @@ To write a C Program to print 'WELCOME' using malloc() and free().
 6.	Stop the program.
 
 ## PROGRAM
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main() {
+    char *str;
+    str = (char *)malloc(10 * sizeof(char));
+    if (str == NULL) {
+        printf("Memory not allocated.\n");
+        return 1;
+    }
+    strcpy(str, "WELCOME");
+    printf("%s\n", str);
+    free(str);
+    return 0;
+}
+```
 
 ## OUTPUT
+```
+WELCOME
+```
 
 
 
@@ -60,9 +98,42 @@ To write a C Program to store the student information and display it using struc
 4.	Stop the program.
 
 ## PROGRAM
+```
+#include <stdio.h>
+struct Student {
+    char name[50];
+    int roll;
+    float marks;
+};
+int main() {
+    struct Student s;
+    printf("Enter name: ");
+    scanf("%s", s.name);
+    printf("Enter roll number: ");
+    scanf("%d", &s.roll);
+    printf("Enter marks: ");
+    scanf("%f", &s.marks);
+
+    printf("\nStudent Details:\n");
+    printf("Name: %s\n", s.name);
+    printf("Roll Number: %d\n", s.roll);
+    printf("Marks: %.2f\n", s.marks);
+    return 0;
+}
+```
 
 
 ## OUTPUT
+```
+Enter name: John
+Enter roll number: 101
+Enter marks: 89.5
+
+Student Details:
+Name: John
+Roll Number: 101
+Marks: 89.50
+```
 
 
 ## RESULT
@@ -87,9 +158,52 @@ To write a C Program to read and store the data of 3 employees and calculate the
 5.	Stop the program.
 
 ## PROGRAM
+```
+#include <stdio.h>
+struct Employee {
+    char name[50];
+    int id;
+    float basic_salary, hra, da, gross_salary;
+};
+int main() {
+    struct Employee e[3];
+    int i;
+    for(i = 0; i < 3; i++) {
+        printf("Enter name, id, basic salary, hra, da for employee %d:\n", i + 1);
+        scanf("%s %d %f %f %f", e[i].name, &e[i].id, &e[i].basic_salary, &e[i].hra, &e[i].da);
+        e[i].gross_salary = e[i].basic_salary + e[i].hra + e[i].da;
+    }
+    printf("\nEmployee Details:\n");
+    for(i = 0; i < 3; i++) {
+        printf("Name: %s\nID: %d\nGross Salary: %.2f\n\n", e[i].name, e[i].id, e[i].gross_salary);
+    }
+    return 0;
+}
+```
 
 
  ## OUTPUT
+ ```
+Enter name, id, basic salary, hra, da for employee 1:
+Alice 1 15000 3000 2000
+Enter name, id, basic salary, hra, da for employee 2:
+Bob 2 18000 3500 2500
+Enter name, id, basic salary, hra, da for employee 3:
+Charlie 3 20000 4000 3000
+
+Employee Details:
+Name: Alice
+ID: 1
+Gross Salary: 20000.00
+
+Name: Bob
+ID: 2
+Gross Salary: 24000.00
+
+Name: Charlie
+ID: 3
+Gross Salary: 27000.00
+```
 
  
 
@@ -134,9 +248,53 @@ Step 7: Output Loop (i = 0 to 1):
 Step 8: End the program.
 
 ## PROGRAM
+```
+#include <stdio.h>
+struct student {
+    char name[10];
+    int rollno;
+    int subject[5];
+    int total;
+};
+int main() {
+    struct student s[2];
+    int i, j;
+    for(i = 0; i < 2; i++) {
+        printf("Enter roll number for student %d: ", i + 1);
+        scanf("%d", &s[i].rollno);
+        printf("Enter 5 subject marks for student %d:\n", i + 1);
+        for(j = 0; j < 5; j++) {
+            scanf("%d", &s[i].subject[j]);
+        }
+    }
+    for(i = 0; i < 2; i++) {
+        s[i].total = 0;
+        for(j = 0; j < 5; j++) {
+            s[i].total += s[i].subject[j];
+        }
+        printf("\nStudent %d Total Marks: %d", i + 1, s[i].total);
+        printf("\nStudent %d Average Marks: %.2f\n", i + 1, (float)s[i].total/5);
+    }
+    return 0;
+}
+```
 
 
 ## OUTPUT
+```
+Enter roll number for student 1: 1
+Enter 5 subject marks for student 1:
+75 80 78 70 71
+Enter roll number for student 2: 2
+Enter 5 subject marks for student 2:
+80 79 78 73 73
+
+Student 1 Total Marks: 374
+Student 1 Average Marks: 74.80
+
+Student 2 Total Marks: 383
+Student 2 Average Marks: 76.60
+```
 
  
 
